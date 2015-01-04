@@ -8,7 +8,7 @@ P2K (Pocket to Kindle)
 
 ## Setup Instructions
 
-To make this application work, you'll need 3 more files that I couldn't put in this repo since either they contain sensitive infomation or they were a 3rd party program that was too large.
+To make this application work, you'll need to add 2 more files that I couldn't put in this repo since either they contain sensitive infomation or they were a 3rd party program that was too large.
 
 ### 1. config/application.yml
 
@@ -66,12 +66,17 @@ production:
   secret_key_base: <%= ENV["SECRET_KEY_BASE"] %>
 ```
 
-### 3. Kindlegen application
+Dependencies
+===
+## 1. Kindlegen application
 We need Kindlegen application to parse our ebook into MOBI format, which will then be delivered to the users. You can download it here: http://www.amazon.com/gp/feature.html?docId=1000765211
 
 Once downloaded, make sure to add the directory you put this file in is located in your PATH.
 
-### P.S. Cron jobs for deliveries
+### 2. ImageMagick for image compression and optimization
+This application uses [ImageMagick] (http://www.imagemagick.org/script/binary-releases.php) to optimize and compress images before putting it into a Kindle supported ebook file. You'll need the ImageMagick binaries in order to make the `convert` command work.
+
+### 3. Cron jobs for deliveries
 This application uses [whenever] (https://github.com/javan/whenever) gem to run cron jobs for deliveries.
 You need to run the command `whenever -i` inside your application directory in order to update your crontab file and start deliveries.
 
