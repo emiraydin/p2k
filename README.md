@@ -8,9 +8,6 @@ P2K (Pocket to Kindle)
 ## Setup Instructions
 
 To make this application work, you'll need 3 more files that I couldn't put in this repo since either they contain sensitive infomation or they were a 3rd party program that was too large.
-  1. config/application.yml file
-  2. config/secrets.yml file
-  3. Kindlegen file
 
 ### 1. config/application.yml
 
@@ -72,6 +69,10 @@ production:
 We need Kindlegen application to parse our ebook into MOBI format, which will then be delivered to the users. You can download it here: http://www.amazon.com/gp/feature.html?docId=1000765211
 
 Once downloaded, make sure to add the directory you put this file in is located in your PATH.
+
+### P.S. Cron jobs for deliveries
+This application uses [whenever] (https://github.com/javan/whenever) gem to run cron jobs for deliveries.
+You need to run the command `whenever -i` inside your application directory in order to update your crontab file and start deliveries.
 
 License
 ===
