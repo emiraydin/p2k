@@ -1,0 +1,34 @@
+<%= render(:partial => "application/header") %>
+
+<% if not flash[:notice].blank? %>
+<div class="ui success message">
+<%= flash[:notice] %>
+</div>
+<% end %>
+
+<div id="main">
+
+<div id="home" class="ui large vertical tablet stackable steps">
+  <a id="manage" class="<%= action_name=='home' ? 'active' : 'inactive' %> step" href="/manage/home">
+    <i class="edit icon"></i>
+    <div class="content">
+      <div class="title">Manage Deliveries</div>
+      <div class="description">View and edit your delivery settings.</div>
+    </div>
+  </a>
+  <a id="stop" class="<%= action_name=='stop' ? 'active' : 'inactive' %> step" href="/manage/stop">
+    <i class="remove circle icon"></i>
+    <div class="content">
+      <div class="title">Stop Deliveries</div>
+      <div class="description">Stop all deliveries immediately.</div>
+    </div>
+  </a>
+</div>
+
+<div id="options">
+<%= yield %>
+</div> <!-- options -->
+
+</div><!-- main -->
+
+<%= render(:partial => "application/footer") %>

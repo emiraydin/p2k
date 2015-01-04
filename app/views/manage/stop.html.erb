@@ -1,0 +1,38 @@
+<h1 class="ui header">Stop all deliveries</h1>
+<p>We will stop all deliveries if you click the below button.</p>
+<p>You can create a new delivery any time you want.</p>
+
+<%= button_to "Stop All Deliveries", { controller: "deliveries", action: "destroy", id: @delivery.id }, method: :delete, :style => "display:none;" %>
+
+
+<div class="ui red button" id="stop-all">Stop All Deliveries</div>
+
+<!-- Are you sure? -->
+<div class="ui basic modal">
+  <i class="close icon"></i>
+  <div class="header">
+    Stop All Deliveries
+  </div>
+  <div class="content">
+    <div class="image">
+      <i class="trash icon"></i>
+    </div>
+    <div class="description">
+      <p>Are you sure you want to stop all your deliveries?</p>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="two fluid ui inverted buttons">
+      <div class="ui red basic inverted button">
+        <i class="remove icon"></i>
+        No
+      </div>
+      <div class="ui green basic inverted button" id="approve-stop">
+        <i class="checkmark icon"></i>
+        Yes
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render(:partial => "application/loader", :locals => {:loading_text => "Deleting..."}) %>

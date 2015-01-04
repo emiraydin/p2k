@@ -1,0 +1,55 @@
+<% if @delivery.nil? %>
+<h1 class="ui header">You are currently not subscribed</h1>
+<p>You can create a new delivery below.</p>
+<%= button_to "Create Delivery", {:controller => "deliveries", :action => "daily"}, :class => "ui primary button" %>
+
+<% else %>
+
+<h1 class="ui header">You are currently subscribed</h1>
+<div class="ui divided list">
+
+  <div class="item">
+    <img class="ui aligned image" src="<%= path_to_image "pocket.png" %>">
+    <div class="content">
+    <div class="header"><%= @user.username %></div>
+    delivering to <i><%= @delivery.kindle_email %></i>
+    </div>
+  </div>
+
+  <div class="item">
+    <i class="refresh icon"></i>
+    <div class="content">
+      <a class="header">Delivery Frequency</a>
+      <div class="description"><%= @delivery.frequency.titleize %></div>
+    </div>
+  </div>
+  <div class="item">
+    <i class="clock icon"></i>
+    <div class="content">
+      <a class="header">Delivery Time</a>
+      <div class="description"><%= @delivery.day %> at <%= '%02d' % @delivery.hour %>:00 in <%= @delivery.time_zone %></div>
+    </div>
+  </div>
+  <div class="item">
+    <i class="setting icon"></i>
+    <div class="content">
+      <a class="header">Delivery Option</a>
+      <div class="description">
+      <%= @delivery.option == 'latest' ? @delivery.count.to_s + ' latest articles' : '' %>
+      <%= @delivery.option == 'timed' ? 'Bunch of articles worth ' + @delivery.count.to_s + ' minutes' : '' %>
+      <%= @delivery.option == 'random' ? @delivery.count.to_s + ' random articles' : '' %>
+      </div>
+    </div>
+  </div>
+  <div class="item">
+    <i class="archive icon"></i>
+    <div class="content">
+      <a class="header">Archive Delivered Articles?</a>
+      <div class="description"><%= @delivery.archive_delivered ? "Yes" : "No" %></div>
+    </div>
+  </div>
+</div>
+
+<a href="/deliveries/home"><div class="ui primary button"><i class="edit icon"></i> Change Delivery Options</div></a>
+
+<% end %>
