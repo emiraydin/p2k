@@ -1,9 +1,10 @@
 P2K (Pocket to Kindle)
 ===
-**Currently served at** http://p2k.co
-**Author:** Emir Aydin - http://emiraydin.com
-
 **P2K (Pocket to Kindle)** is a Rails application that sends articles from your Pocket to Kindle e-reader.
+
+**Currently served at** http://p2k.co
+
+**Author:** Emir Aydin - http://emiraydin.com
 
 ## Setup Instructions
 
