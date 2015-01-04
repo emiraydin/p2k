@@ -9,7 +9,7 @@ default: &default
   encoding: utf8
   username: <%= Settings.DATABASE_USERNAME %>
   password: <%= Settings.DATABASE_PASSWORD %>
-  host: localhost
+  host: <%= Settings.DATABASE_HOST %>
   pool: 5
   timeout: 5000
 
