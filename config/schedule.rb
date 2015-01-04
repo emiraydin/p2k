@@ -18,7 +18,6 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
-include DeliveryProcessor
 
 every :hour do
 	runner "DeliveryProcessor.check"
