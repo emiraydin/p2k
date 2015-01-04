@@ -35,7 +35,7 @@ class DeliveriesController < ApplicationController
 
     # If the delivery is successfully saved, create a notice and redirect to user home
     if @delivery.save
-      flash[:notice] = "You have successfully created a new delivery."
+      flash[:notice] = "You have successfully created a new delivery. Your articles are scheduled to be sent to your Kindle in your designated time."
       redirect_to :controller => "manage", :action => "home"
     end
 
@@ -56,7 +56,7 @@ class DeliveriesController < ApplicationController
     # Process the delivery right away
     DeliveryProcessor.deliver(delivery)
     # Set the flash notice and redirect
-    flash[:notice] = "Your one-time delivery has been successfully completed."
+    flash[:notice] = "Your one-time delivery has been successfully processed. Please wait a few minutes for your Kindle to download your articles."
     redirect_to :controller => "deliveries", :action => "onetime"
 
   end
