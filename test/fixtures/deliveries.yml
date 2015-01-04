@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  delivery_frequency: MyString
+  delivery_option: MyString
+  archive_delivered: false
+
+two:
+  user_id: 
+  delivery_frequency: MyString
+  delivery_option: MyString
+  archive_delivered: false
