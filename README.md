@@ -66,9 +66,9 @@ production:
   secret_key_base: <%= ENV["SECRET_KEY_BASE"] %>
 ```
 
-Dependencies
-===
-## 1. Kindlegen application
+## Dependencies
+
+### 1. Kindlegen application
 We need Kindlegen application to parse our ebook into MOBI format, which will then be delivered to the users. You can download it here: http://www.amazon.com/gp/feature.html?docId=1000765211
 
 Once downloaded, make sure to add the directory you put this file in is located in your PATH.
