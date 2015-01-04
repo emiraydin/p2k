@@ -1,0 +1,24 @@
+@import "semantic-custom";
+@import "common";
+
+div.ui.radio.checkbox select {
+	display: inline-block;
+	max-width: 70px;
+}
+
+.ui.form .field>.selection.dropdown {
+	max-width: 400px;
+}
+
+.ui.form div.field.email {
+	width: 350px;
+	margin-left: -10px;
+}
+
+div.dropdown.list-detail {
+	max-width: 100px!important;
+}
+
+#start-delivering {
+	margin-top: 20px;
+}

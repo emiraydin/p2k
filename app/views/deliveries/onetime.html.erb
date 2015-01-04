@@ -1,0 +1,79 @@
+<h1 class="ui header">Deliver right now</h1>
+<p>We will deliver your articles to your Kindle for once now.</p>
+<p>Please check daily or weekly delivery options for recurring delivery.</p>
+
+<%= form_tag :controller => "deliveries", :action => "onetime" do %>
+  <h2 class="ui header">What do you want us to deliver?</h2>
+  <div class="ui list grouped fields">
+    <div class="field item">
+      <div class="ui radio checkbox checked">
+        <input type="radio" name="delivery[option]" value="latest" checked="checked">
+        <label><i class="rss icon"></i>
+          Deliver latest </label>
+        </div>
+        <select class="list-detail" name="delivery[count_latest]">
+          <option value="3">3 articles</option>
+          <option value="5">5 articles</option>
+          <option value="10">10 articles</option>
+          <option value="15">15 articles</option>
+          <option value="20">20 articles</option>
+          <option value="25">25 articles</option>
+        </select>
+      </div>
+      <div class="field item">
+        <div class="ui radio checkbox">
+          <input type="radio" name="delivery[option]" value="timed">
+          <label><i class="clock icon"></i>
+            Deliver bunch of articles worth </label>
+          </div>
+          <select class="list-detail" name="delivery[count_timed]">
+            <option value="15">15 minutes</option>
+            <option value="30">30 minutes</option>
+            <option value="45">45 minutes</option>
+            <option value="60">60 minutes</option>
+            <option value="90">90 minutes</option>
+            <option value="120">120 minutes</option>
+          </select>
+
+        </div>
+        <div class="field item">
+          <div class="ui radio checkbox">
+            <input type="radio" name="delivery[option]" value="random">
+            <label><i class="random icon"></i>
+              Deliver random </label>
+            </div>
+            <select class="list-detail" name="delivery[count_random]">
+              <option value="5">5 articles</option>
+              <option value="10">10 articles</option>
+              <option value="15">15 articles</option>
+              <option value="20">20 articles</option>
+              <option value="25">25 articles</option>
+            </select>
+          </div>
+        </div>
+
+
+<div class="ui selection dropdown">
+  <input type="hidden" name="delivery[archive_delivered]">
+  <i class="dropdown icon"></i>
+  <div class="default text">Archive delivered articles?</div>
+  <div class="menu">
+    <div class="item" data-value="1">Yes</div>
+    <div class="item" data-value="0">No</div>
+  </div>
+</div>
+
+<input type="hidden" name="delivery[kindle_email]" value="" id="kindle_email">
+
+<p>
+<div class="ui primary button" id="start">
+	<i class="play icon"></i>
+	Deliver Now
+</div>
+</p>
+
+<%= render(:partial => "laststep") %>
+
+<% end %>
+
+<%= render(:partial => "application/loader", :locals => {:loading_text => "Delivering..."}) %>

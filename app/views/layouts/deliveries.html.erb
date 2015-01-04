@@ -1,0 +1,41 @@
+<%= render(:partial => "application/header") %>
+
+<% if not flash[:notice].blank? %>
+<div class="ui success message">
+<%= flash[:notice] %>
+</div>
+<% end %>
+
+<div id="main">
+
+<div id="home" class="ui large vertical tablet stackable steps">
+  <a id="daily" class="<%= action_name=='daily' ? 'active' : 'inactive' %> step" href="/deliveries/daily">
+    <i class="sun icon"></i>
+    <div class="content">
+      <div class="title">Daily</div>
+      <div class="description">Content delivery to your Kindle every day.</div>
+    </div>
+  </a>
+  <a id="weekly" class="<%= action_name=='weekly' ? 'active' : 'inactive' %> step" href="/deliveries/weekly">
+    <i class="calendar icon"></i>
+    <div class="content">
+      <div class="title">Weekly</div>
+      <div class="description">Content delivery to your Kindle every week.</div>
+    </div>
+  </a>
+  <a id="one-time" class="<%= action_name=='onetime' ? 'active' : 'inactive' %> step" href="/deliveries/onetime">
+    <i class="share icon"></i>
+    <div class="content">
+      <div class="title">One Time</div>
+      <div class="description">Deliver to your Kindle only now.</div>
+    </div>
+  </a>
+</div>
+
+<div id="options">
+<%= yield %>
+</div> <!-- options -->
+
+</div><!-- main -->
+
+<%= render(:partial => "application/footer") %>

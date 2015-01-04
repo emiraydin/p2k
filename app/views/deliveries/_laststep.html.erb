@@ -1,0 +1,40 @@
+<div class="ui modal">
+  <i class="close icon"></i>
+  <div class="header">
+    Almost done...
+  </div>
+  <div class="content">
+    <div class="description">
+      <div class="ui ordered large relaxed divided list">
+        <div class="item">
+          <div class="content">
+            <div class="header">Go to your Kindle's Manage Your Content and Devices page.</div>
+            Here: <a href="https://www.amazon.com/mycd" target="_blank">https://www.amazon.com/mycd</a>
+          </div>
+        </div>
+        <div class="item">
+          <div class="content">
+            <div class="header">Under the "Settings" tab, find "Approved Personal Document E-mail List" section, and add:</div>
+            delivery@p2k.co
+          </div>
+        </div>
+        <div class="item">
+          <div class="content">
+            <div class="header">Under "Send-to-Kindle E-Mail Settings", find the Kindle E-mail Address for your Kindle device and enter that below.</div>
+            <div class="field email">
+              <div class="ui left icon big fluid input">
+                <input type="text" placeholder="Your Kindle delivery email address" id="entered_email">
+                <i class="mail icon"></i>
+              </div>
+            </div>
+
+            <div id="start-delivering"><%= submit_tag "Start Delivering Now!", {:class => "ui primary button"} %></div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
