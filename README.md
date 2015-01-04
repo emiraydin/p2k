@@ -5,7 +5,7 @@ P2K (Pocket to Kindle)
 
 **P2K (Pocket to Kindle)** is a Rails application that sends articles from your Pocket to Kindle e-reader.
 
-## Installation
+## Setup Instructions
 
 To make this application work, you'll need 3 more files that I couldn't put in this repo since either they contain sensitive infomation or they were a 3rd party program that was too large.
   1. config/application.yml file
@@ -33,11 +33,13 @@ development:
   <<: *defaults
   APP_PATH: "http://localhost:3000"
   POCKET_REDIRECT_URI: "http://localhost:3000/welcome/home"
+  DATABASE_HOST: "localhost"
   DATABASE_USERNAME: "my-db-username"
   DATABASE_PASSWORD: "my-db-password"
 
 test:
   <<: *defaults
+  DATABASE_HOST: "localhost"
   DATABASE_USERNAME: "my-test-username"
   DATABASE_PASSWORD: "my-test-password"
 
@@ -45,6 +47,7 @@ production:
   <<: *defaults
   APP_PATH: "http://myapp.com"
   POCKET_REDIRECT_URI: "http://myapp.com/welcome/home"
+  DATABASE_HOST: "SOME IP"
   DATABASE_USERNAME: "my-db-username"
   DATABASE_PASSWORD: "my-db-password"
 ```
