@@ -1,0 +1,12 @@
+<%= render(:partial => "application/header") %>
+
+<% if not flash[:notice].blank? %>
+<div class="ui success message" align="center">
+<%= flash[:notice] %>
+</div>
+<% end %>
+
+<%= yield %>
+
+</body>
+</html>
