@@ -1,0 +1,25 @@
+body {
+	overflow: hidden;
+	height: 100%;
+	width: 100%;
+}
+
+%vertical-align {
+	position: relative;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+#welcome {
+	@extend %vertical-align;
+}
+
+#connect p {
+	font-size: 1.2em;
+}
+
+.ui.message {
+	margin: 0!important;
+}
