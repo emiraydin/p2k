@@ -16,7 +16,7 @@ This file stores all your application passwords and constants. Get your Pocket A
 
 Create a file named `application.yml` inside `/config` folder. It should look something like this:
 
-```
+```yml
 # config/application.yml
 # This file stores all the application constants
 
@@ -53,7 +53,7 @@ production:
 ### 2. config/secrets.yml
 This file contains application secrets for all your Rails environments. You can generate them using `rake secret` command.
 
-```
+```yml
 development:
   secret_key_base: PUT-SOME-HASH-HERE
 
@@ -79,6 +79,18 @@ This application uses [ImageMagick] (http://www.imagemagick.org/script/binary-re
 ### 3. Cron jobs for deliveries
 This application uses [whenever] (https://github.com/javan/whenever) gem to run cron jobs for deliveries.
 You need to run the command `whenever -i` inside your application directory in order to update your crontab file and start deliveries.
+
+If you don't want to use whenever gem, you can use Unix cronjobs by typing the command `crontab -e` and adding the line below:
+`0 * * * * /home/username/cronjob.sh >> /home/username/logfile.log 2>&1`
+
+Your `cronjob.sh` will look something like this:
+```sh
+#!/bin/bash
+# Add the kindlegen and kindlerb to PATH
+export PATH=$PATH:/home/username/app/vendor/bin:/usr/local/bin
+# Run the delivery processor
+cd /home/username/app && bin/rails runner -e production "DeliveryProcessor.check"
+```
 
 License
 ===
