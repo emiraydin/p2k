@@ -43,3 +43,7 @@ bower.json
 
 # Windows image file caches
 Thumbs.db
+
+# Don't add generated contents of public folder
+/public/generated/*
+/public/assets/*
