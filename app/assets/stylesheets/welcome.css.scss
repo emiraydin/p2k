@@ -1,7 +1,5 @@
 body {
-	overflow: hidden;
-	height: 100%;
-	width: 100%;
+	overflow-x: hidden;
 }
 
 %vertical-align {
@@ -13,7 +11,16 @@ body {
 }
 
 #welcome {
-	@extend %vertical-align;
+	// @extend %vertical-align;
+}
+
+#p2k-logo {
+	margin-top: 30px;
+}
+
+#start-button {
+	margin-top: -15px;
+	margin-bottom: 10px;
 }
 
 #connect p {

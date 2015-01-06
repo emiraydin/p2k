@@ -1,9 +1,80 @@
 
 <div id="welcome" align="center">
-<%= image_tag("p2k.png") %>
+<div id="p2k-logo"><%= image_tag("p2k.png") %></div>
 <div id="connect" class="ui piled segment">
 	<p><strong>P2K</strong> (<i>Pocket to Kindle</i>) is a free service that sends your <a href="https://getpocket.com/" target="_blank">Pocket</a> articles to your <a href="https://kindle.amazon.com/" target="_blank">Kindle</a> e-reader periodically.</p>
 	<%= render(:partial => "social") %>
 </div>
-	<a href="/welcome/connect"><div class="ui red big button">Start Delivering!</div></a>
+	<a href="/welcome/connect"><div class="ui red huge button" id="start-button">Start Delivering!</div></a>
+
+<div class="ui segment">
+
+<div class="ui huge red header">
+	<div class="content">
+		Delivery Frequency
+		<div class="sub header">Get your articles delivered at whenever you want.</div>
+	</div>
+</div>
+
+<div class="feature alternate ui stripe vertical segment">
+  <div class="ui three column equal height center aligned divided relaxed stackable page grid">
+    <div class="column">
+      <h2 class="ui icon header">
+        <i class="sun icon"></i>
+        Daily
+      </h2>
+      <p>Every day at your designated time.</p>
+    </div>
+    <div class="column">
+      <h2 class="ui icon header">
+        <i class="calendar icon"></i>
+        Weekly
+      </h2>
+      <p>Every week on your designated day and time.</p>
+    </div>
+    <div class="column">
+      <h2 class="ui icon header">
+        <i class="share icon"></i>
+        One Time
+      </h2>
+      <p>Just once, non-recurring delivery.</p>
+    </div>
+  </div>
+</div>
+
+<div class="ui huge red header">
+	<div class="content">
+		Delivery Options
+		<div class="sub header">Because we know how you like to read.</div>
+	</div>
+</div>
+
+<div class="feature alternate ui stripe vertical segment">
+  <div class="ui three column equal height center aligned divided relaxed stackable page grid">
+    <div class="column">
+      <h2 class="ui icon header">
+        <i class="rss icon"></i>
+        Latest Articles
+      </h2>
+      <p>We send latest X articles from your Pocket to your Kindle.</p>
+    </div>
+    <div class="column">
+      <h2 class="ui icon header">
+        <i class="clock icon"></i>
+        Articles Worth Some Time
+      </h2>
+      <p>We send articles worth X minutes from Pocket to your Kindle.</p>
+    </div>
+    <div class="column">
+      <h2 class="ui icon header">
+        <i class="random icon"></i>
+        Random Articles
+      </h2>
+      <p>We send X random articles from your Pocket to your Kindle.</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- ui segment -->
+
 </div>
