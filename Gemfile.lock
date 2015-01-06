@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/doabit/semantic-ui-sass.git
+  revision: 8658e7ff4c7794089698b11a16f5e2fff121f3c7
+  branch: v1.0beta
+  specs:
+    semantic-ui-sass (1.5.0.0)
+      sass (~> 3.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -69,6 +77,7 @@ GEM
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
+    rack-zippy (2.0.2)
     rails (4.1.6)
       actionmailer (= 4.1.6)
       actionpack (= 4.1.6)
@@ -138,10 +147,12 @@ DEPENDENCIES
   kindlerb
   open_uri_redirections
   pg
+  rack-zippy
   rails (= 4.1.6)
   rest_client
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
+  semantic-ui-sass!
   settingslogic
   thin
   turbolinks
