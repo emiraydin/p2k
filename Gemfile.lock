@@ -77,7 +77,6 @@ GEM
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
-    rack-zippy (2.0.2)
     rails (4.1.6)
       actionmailer (= 4.1.6)
       actionpack (= 4.1.6)
@@ -147,7 +146,6 @@ DEPENDENCIES
   kindlerb
   open_uri_redirections
   pg
-  rack-zippy
   rails (= 4.1.6)
   rest_client
   sass-rails (~> 4.0.3)
