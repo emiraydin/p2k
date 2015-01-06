@@ -18,11 +18,13 @@
 }
 
 #footer {
+	display: block;
+	position: absolute;
 	clear: both;
-	height: 10%;
 	width: 100%;
-	text-align: center;
 	padding-top: 2%;
+	height: 10%;
+	text-align: center;
 	background: #333333;
 	color: #ffffff;
 }
