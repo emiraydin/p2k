@@ -64,6 +64,7 @@ module CreateBook
 			# Parse each article and then write them to an HTML file
 			File.open(articles_home.to_s+"/"+i.to_s+".html", "w") do |f|
 				article_html = self.parse article[1]['resolved_url']
+				article_html = self.find_and_download_images(article_html, images_home)
 				f.write("<html>" +
 					"<head>" +
 					'<meta http-equiv="Content-Type" content="text/html; charset=utf-8">' +
@@ -119,7 +120,6 @@ module CreateBook
 	  				next
 	  			end
 	  		end
-		  	
 
 		  	# Convert to JPG
 		  	new_image = image_url.split(".")
