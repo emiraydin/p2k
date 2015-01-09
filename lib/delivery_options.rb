@@ -53,12 +53,14 @@ module DeliveryOptions
 		# Get all articles and choose randomly among them
 		articles = PocketClient.get_articles(access_token, "")
 
+		result = Hash[articles.to_a.sample(count)]
+
 		# Archive delivered if requested
 		if archive
-			PocketClient.archive_articles(access_token, articles)
+			PocketClient.archive_articles(access_token, result)
 		end
 
-		return Hash[articles.to_a.sample(count)]
+		return result
 	end
 
 	# Find the read time in minutes using average WPM of 250
