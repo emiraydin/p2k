@@ -111,9 +111,15 @@ module CreateBook
 
 	  		# Download image
 	  		image_url = save_to.join(name).to_s
-	  		open(image_url, 'wb') do |file|
-	  			file << open(src, :allow_redirections => :safe).read
-	  		end
+	  		begin
+		  		open(image_url, 'wb') do |file|
+		  			file << open(src, :allow_redirections => :safe).read
+		  		end
+		  	rescue => e
+		  		# If the URL cannot be fetched, print an error message and continue
+		  		puts e.message
+		  		next
+		  	end
 
 		  	# Convert to JPG
 		  	new_image = image_url.split(".")
