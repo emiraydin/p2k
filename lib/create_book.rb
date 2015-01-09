@@ -64,7 +64,6 @@ module CreateBook
 			# Parse each article and then write them to an HTML file
 			File.open(articles_home.to_s+"/"+i.to_s+".html", "w") do |f|
 				article_html = self.parse article[1]['resolved_url']
-				article_html = self.find_and_download_images(article_html, images_home)
 				f.write("<html>" +
 					"<head>" +
 					'<meta http-equiv="Content-Type" content="text/html; charset=utf-8">' +
@@ -111,15 +110,16 @@ module CreateBook
 
 	  		# Download image
 	  		image_url = save_to.join(name).to_s
-	  		begin
-		  		open(image_url, 'wb') do |file|
-		  			file << open(src, :allow_redirections => :safe).read
-		  		end
-		  	rescue => e
-		  		# If the URL cannot be fetched, print an error message and continue
-		  		puts e.message
-		  		next
-		  	end
+	  		open(image_url, 'wb') do |file|
+	  			begin
+	  				file << open(src, :allow_redirections => :safe).read
+				rescue => e
+	  				# If the image URL cannot be fetched, print an error message and continue
+	  				puts "IMAGE CANNOT BE FETCHED!: " + e.message
+	  				next
+	  			end
+	  		end
+		  	
 
 		  	# Convert to JPG
 		  	new_image = image_url.split(".")
