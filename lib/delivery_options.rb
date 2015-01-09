@@ -29,7 +29,13 @@ module DeliveryOptions
 				result.push(a)
 				total_time += a_time
 			else
-				break # Stop adding
+				# If the resulting set is empty, move on to the next article
+				if result.empty?
+					next
+				else
+				# Otherwise, stop adding
+					break
+				end
 			end
 		end
 
