@@ -101,9 +101,9 @@ module CreateBook
 	# Find, download and replace paths of images in the created book to enable local access
 	def self.find_and_download_images(html, save_to)
 
-		begin
-		  	# Find all images in a given HTML
-		  	Nokogiri::HTML(html).xpath("//img/@src").each do |src|
+	  	# Find all images in a given HTML
+	  	Nokogiri::HTML(html).xpath("//img/@src").each do |src|
+	  		begin
 		  		src = src.to_s
 		  		name = src.split("/")
 		  		# Windows doesn't accept * or ? in file names
@@ -112,16 +112,10 @@ module CreateBook
 
 		  		# Download image
 		  		image_url = save_to.join(name).to_s
-		  		begin
-		  			image_from_src = open(src, :allow_redirections => :safe).read
-			  		open(image_url, 'wb') do |file|	  			
-		  				file << image_from_src
-			  		end
-				rescue => e
-	  				# If the image URL cannot be fetched, print an error message
-	  				puts "IMAGE CANNOT BE FETCHED!: " + e.message
-	  				next
-	  			end
+		  		image_from_src = open(src, :allow_redirections => :safe).read
+		  		open(image_url, 'wb') do |file|	  			
+	  				file << image_from_src
+		  		end
 
 			  	# Convert to JPG
 			  	new_image = image_url.split(".")
@@ -140,11 +134,13 @@ module CreateBook
 			  	new_image_name = new_image_url.split("/")
 			  	new_image_name = new_image_name[new_image_name.size-1]
 			  	html = html.gsub(src, "../../img/" + new_image_name)
-			  end
-		rescue => e
-			puts "IMAGE ELEMENT CANNOT BE PARSED!: " + e.message
-			next
+			rescue => e
+  				# If the image URL cannot be fetched, print an error message
+  				puts "IMAGE CANNOT BE DOWNLOADED!: " + e.message + "\n Image URL: " + src
+  				next
+  			end
 		end
+
 	  	# Return the new html
 	  	return html
 	end
