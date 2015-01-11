@@ -49,7 +49,7 @@ module DeliveryProcessor
 		end
 
 		# Delete the ebook
-		FileUtils.rm_rf(book_root)
+		# FileUtils.rm_rf(book_root)
 
 		delivery_log = "----------------\n" +
 					   "DELIVERY PROCESSED!\n" +
