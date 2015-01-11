@@ -101,45 +101,50 @@ module CreateBook
 	# Find, download and replace paths of images in the created book to enable local access
 	def self.find_and_download_images(html, save_to)
 
-	  	# Find all images in a given HTML
-	  	Nokogiri::HTML(html).xpath("//img/@src").each do |src|
-	  		src = src.to_s
-	  		name = src.split("/")
-	  		# Windows doesn't accept * or ? in file names
-	  		name = name[name.size-1].split("?")[0]
-	  		name = name.gsub('*', '')
+		begin
+		  	# Find all images in a given HTML
+		  	Nokogiri::HTML(html).xpath("//img/@src").each do |src|
+		  		src = src.to_s
+		  		name = src.split("/")
+		  		# Windows doesn't accept * or ? in file names
+		  		name = name[name.size-1].split("?")[0]
+		  		name = name.gsub('*', '')
 
-	  		# Download image
-	  		image_url = save_to.join(name).to_s
-	  		begin
-	  			image_from_src = open(src, :allow_redirections => :safe).read
-		  		open(image_url, 'wb') do |file|	  			
-	  				file << image_from_src
+		  		# Download image
+		  		image_url = save_to.join(name).to_s
+		  		begin
+		  			image_from_src = open(src, :allow_redirections => :safe).read
+			  		open(image_url, 'wb') do |file|	  			
+		  				file << image_from_src
+			  		end
+				rescue => e
+	  				# If the image URL cannot be fetched, print an error message
+	  				puts "IMAGE CANNOT BE FETCHED!: " + e.message
+	  				next
+	  			end
+
+			  	# Convert to JPG
+			  	new_image = image_url.split(".")
+			  	ext = new_image[new_image.size-1]
+			  	new_image[new_image.size-1] = ".jpg"
+			  	new_image_url = new_image.join
+
+			  	# Resize and make it greyscale
+			  	command = 'convert ' + image_url + ' -compose over -background white -flatten -resize "400x267>" -alpha off -colorspace Gray ' + new_image_url
+			  	created = system command
+		  		# Remove the old image
+		  		if created and ext != "jpg"
+		  			FileUtils.rm(image_url)
 		  		end
-			rescue => e
-  				# If the image URL cannot be fetched, print an error message
-  				puts "IMAGE CANNOT BE FETCHED!: " + e.message
-  				next
-  			end
-
-		  	# Convert to JPG
-		  	new_image = image_url.split(".")
-		  	ext = new_image[new_image.size-1]
-		  	new_image[new_image.size-1] = ".jpg"
-		  	new_image_url = new_image.join
-
-		  	# Resize and make it greyscale
-		  	command = 'convert ' + image_url + ' -compose over -background white -flatten -resize "400x267>" -alpha off -colorspace Gray ' + new_image_url
-		  	created = system command
-	  		# Remove the old image
-	  		if created and ext != "jpg"
-	  			FileUtils.rm(image_url)
-	  		end
-		  	# Replace the image URL with downloaded local version
-		  	new_image_name = new_image_url.split("/")
-		  	new_image_name = new_image_name[new_image_name.size-1]
-		  	html = html.gsub(src, "../../img/" + new_image_name)
-		  end
+			  	# Replace the image URL with downloaded local version
+			  	new_image_name = new_image_url.split("/")
+			  	new_image_name = new_image_name[new_image_name.size-1]
+			  	html = html.gsub(src, "../../img/" + new_image_name)
+			  end
+		rescue => e
+			puts "IMAGE ELEMENT CANNOT BE PARSED!: " + e.message
+			next
+		end
 	  	# Return the new html
 	  	return html
 	end
