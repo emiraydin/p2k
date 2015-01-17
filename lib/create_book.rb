@@ -63,7 +63,7 @@ module CreateBook
 		articles.each do |article|
 			# Parse each article and then write them to an HTML file
 			File.open(articles_home.to_s+"/"+i.to_s+".html", "w") do |f|
-				article_html = self.parse article[1]['resolved_url']
+				article_html = self.parse_diffbot article[1]['resolved_url']
 				article_html = self.find_and_download_images(article_html, images_home)
 				f.write("<html>" +
 					"<head>" +
@@ -83,19 +83,41 @@ module CreateBook
 
 
 	# Parse the articles via Readability API
-	def self.parse(url)
+	def self.parse_readability(url, error)
 		begin
 			response = RestClient.get 'https://readability.com/api/content/v1/parser', {:params => {
 				:url => url, :token => Settings.READABILITY_PARSER_KEY
 				}}
-			rescue => e
-				return "This article could not be fetched or is otherwise invalid.\n" + 
+		rescue => e
+			Rails.logger.debug "Both APIs failed on URL" + url + "\n"
+			return "This article could not be fetched or is otherwise invalid.\n" + 
 				"This is most likely an issue with fetching the article from the source server.\n" +
-				"Please check that the source server is available and that your URL was properly escaped.\n" +
-				"URL: " + url + "\n"
+				"URL: " + url + "\n" +
+				"Parsing was first tried via Diffbot API. Error message:\n" + error + "\n" +
+				"Parsing then tried via Readability API. Error message:\n" + e.message
 		end
 		parsed = JSON.parse(response)
 		return parsed['content']
+	end
+
+	# Parse the articles via Diffbot API
+	def self.parse_diffbot(url)
+		begin
+			response = RestClient.get 'http://api.diffbot.com/v3/article', {:params => {
+				:url => url, :token => Settings.DIFFBOT_API_KEY
+				}}
+		rescue => e
+			Rails.logger.debug "Diffbot API failed! Switching to Readability...\n"
+			return self.parse_readability(url, e.message)
+		end
+		parsed = JSON.parse(response)
+
+		# If there is an error in the response, switch to Readability API
+		if parsed['error']
+			self.parse_readability(url, parsed['error'])
+		else
+			return parsed['objects'][0]['html']
+		end
 	end
 
 	# Find, download and replace paths of images in the created book to enable local access
