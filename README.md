@@ -2,7 +2,7 @@ P2K (Pocket to Kindle)
 ===
 **P2K (Pocket to Kindle)** is a Rails application that sends articles from your Pocket to Kindle e-reader.
 
-**Currently served at** http://p2k.co
+**Currently live at** http://p2k.co
 
 **Author:** Emir Aydin - http://emiraydin.com
 
@@ -21,7 +21,9 @@ Create a file named `application.yml` inside `/config` folder. It should look so
 # This file stores all the application constants
 
 defaults: &defaults
-  POCKET_CONSUMER_KEY: "00000-somehash"
+  POCKET_CONSUMER_KEY: "YOUR_POCKET_API_KEY"
+  READABILITY_PARSER_KEY: "YOUR_READABILITY_API_KEY"
+  DIFFBOT_API_KEY: "YOUR_DIFFBOT_API_KEY"
   DELIVERY_EMAIL_SMTP: "smtp.mymailprovider.com"
   DELIVERY_EMAIL_PORT: portnumber
   DELIVERY_EMAIL_ADDRESS: "delivery@myapp.com"
