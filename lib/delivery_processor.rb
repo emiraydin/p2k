@@ -1,4 +1,5 @@
 require 'fileutils'
+require 'kindlerb'
 include DeliveryOptions
 include CreateBook
 
@@ -33,7 +34,7 @@ module DeliveryProcessor
 
 		# Create the ebook
 		Dir.chdir(book_root)
-		created = system 'kindlerb'
+		created = Kindlerb.run book_root
 
 		# If the system call returns anything other than nil, the call was successful
 		successful = $?.exitstatus.nil? ? false : true
