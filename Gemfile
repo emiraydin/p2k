@@ -1,11 +1,10 @@
 source 'https://rubygems.org'
-ruby '1.9.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
-gem 'pg'
+gem 'pg', '~> 0.18.0.pre20141117110243'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -40,7 +39,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass', branch: 'v1.0beta'
 gem 'rest_client'
-gem 'kindlerb'
+gem 'kindlerb', github: 'emiraydin/kindlerb'
 gem 'certified'
 gem 'open_uri_redirections'
 gem 'whenever'
