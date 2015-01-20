@@ -6,6 +6,8 @@ P2K (Pocket to Kindle)
 
 **Author:** Emir Aydin - http://emiraydin.com
 
+**Personal Note:** This is my first 'official' Rails app, so if you spot any problems or you know a better practice, please let me know.
+
 ## Setup Instructions
 
 To make this application work, you'll need to add 2 more files that I couldn't put in this repo since either they contain sensitive infomation or they were a 3rd party program that was too large.
@@ -71,9 +73,7 @@ production:
 ## Dependencies
 
 ### 1. Kindlegen application
-We need Kindlegen application to parse our ebook into MOBI format, which will then be delivered to the users. You can download it here: http://www.amazon.com/gp/feature.html?docId=1000765211
-
-Once downloaded, make sure to add the directory you put this file in is located in your PATH.
+We need Kindlegen application to parse our ebook into MOBI format, which will then be delivered to the users. I'm using the Kindlerb gem to download and operate the Kindlegen executable, so please make sure you follow the gem documentation here for setup: https://github.com/emiraydin/kindlerb.
 
 ### 2. ImageMagick for image compression and optimization
 This application uses [ImageMagick] (http://www.imagemagick.org/script/binary-releases.php) to optimize and compress images before putting it into a Kindle supported ebook file. You'll need the ImageMagick binaries in order to make the `convert` command work.
@@ -88,8 +88,8 @@ If you don't want to use whenever gem, you can use Unix cronjobs by typing the c
 Your `cronjob.sh` will look something like this:
 ```sh
 #!/bin/bash
-# Add the kindlegen and kindlerb to PATH
-export PATH=$PATH:/home/username/app/vendor/bin:/usr/local/bin
+# Add Ruby to PATH (necessary for some installations)
+export PATH=$PATH:/usr/local/bin
 # Run the delivery processor
 cd /home/username/app && rails runner -e production "DeliveryProcessor.check"
 ```
