@@ -114,7 +114,7 @@ module CreateBook
 
 		# If there is an error in the response, switch to Readability API
 		if parsed['error']
-			self.parse_readability(url, parsed['error'])
+			return self.parse_readability(url, parsed['error'])
 		else
 			return parsed['objects'][0]['html']
 		end
