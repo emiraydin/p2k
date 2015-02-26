@@ -147,35 +147,22 @@ module CreateBook
 	  	Nokogiri::HTML(html).xpath("//img/@src").each do |src|
 	  		begin
 		  		src = src.to_s
-		  		name = src.split("/")
-		  		# Windows doesn't accept * or ? in file names
-		  		name = name[name.size-1].split("?")[0]
-		  		name = name.gsub('*', '')
+		  		# Make image name SHA1 hash (only alphanumeric chars) and its extension .jpg
+		  		image_name = Digest::SHA1.hexdigest(src) << '.jpg'
 
 		  		# Download image
-		  		image_url = save_to.join(name).to_s
+		  		image_url = save_to.join(image_name).to_s
 		  		image_from_src = open(src, :allow_redirections => :safe).read
 		  		open(image_url, 'wb') do |file|	  			
 	  				file << image_from_src
 		  		end
 
-			  	# Convert to JPG
-			  	new_image = image_url.split(".")
-			  	ext = new_image[new_image.size-1]
-			  	new_image[new_image.size-1] = ".jpg"
-			  	new_image_url = new_image.join
-
 			  	# Resize and make it greyscale
-			  	command = 'convert ' + image_url + ' -compose over -background white -flatten -resize "400x267>" -alpha off -colorspace Gray ' + new_image_url
+			  	command = 'convert ' + image_url + ' -compose over -background white -flatten -resize "400x267>" -alpha off -colorspace Gray ' + image_url
 			  	created = system command
-		  		# Remove the old image
-		  		if created and ext != "jpg"
-		  			FileUtils.rm(image_url)
-		  		end
+
 			  	# Replace the image URL with downloaded local version
-			  	new_image_name = new_image_url.split("/")
-			  	new_image_name = new_image_name[new_image_name.size-1]
-			  	html = html.gsub(src, "../../img/" + new_image_name)
+			  	html = html.gsub(src, "../../img/" + image_name)
 			rescue => e
   				# If the image URL cannot be fetched, print an error message
   				puts "IMAGE CANNOT BE DOWNLOADED!: " + e.message + "\n Image URL: " + src
