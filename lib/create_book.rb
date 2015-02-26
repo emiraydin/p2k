@@ -63,7 +63,7 @@ module CreateBook
 		articles.each do |article|
 			# Parse each article and then write them to an HTML file
 			File.open(articles_home.to_s+"/"+i.to_s+".html", "w") do |f|
-				article_html = self.parse_diffbot article[1]['resolved_url']
+				article_html = self.parse_pocket article[1]['resolved_url']
 				article_html = self.find_and_download_images(article_html, images_home)
 				f.write("<html>" +
 					"<head>" +
@@ -81,6 +81,26 @@ module CreateBook
 		end
 	end
 
+	# Parse the articles via Pocket Article API (Private Beta)
+	def self.parse_pocket(url)
+		begin
+			response = RestClient.get 'http://text.getpocket.com/v3/text', {:params => {
+				:url => url, :consumer_key => Settings.POCKET_CONSUMER_KEY,
+				:images => 1, :output => "json"
+				}}
+		rescue => e
+			Rails.logger.debug "Pocket Article View API failed! Switching to Readability...\n"
+			return self.parse_readability(url, e.message)
+		end
+		parsed = JSON.parse(response)
+
+		# If there is an error in the response, switch to Readability API
+		if parsed['responseCode'] != "200"
+			return self.parse_readability(url, parsed['excerpt'])
+		else
+			return parsed['article']
+		end
+	end
 
 	# Parse the articles via Readability API
 	def self.parse_readability(url, error)
@@ -89,7 +109,7 @@ module CreateBook
 				:url => url, :token => Settings.READABILITY_PARSER_KEY
 				}}
 		rescue => e
-			Rails.logger.debug "Both APIs failed on URL" + url + "\n"
+			Rails.logger.debug "Both APIs failed on URL: " + url + "\n"
 			return "This article could not be fetched or is otherwise invalid.\n" + 
 				"This is most likely an issue with fetching the article from the source server.\n" +
 				"URL: " + url + "\n" +
@@ -103,7 +123,7 @@ module CreateBook
 	# Parse the articles via Diffbot API
 	def self.parse_diffbot(url)
 		begin
-			response = RestClient.get 'http://api.diffbot.com/v3/article', {:params => {
+			response = RestClient.get 'https://api.diffbot.com/v3/article', {:params => {
 				:url => url, :token => Settings.DIFFBOT_API_KEY
 				}}
 		rescue => e
