@@ -29,7 +29,7 @@ class MandrillMailer
 			result = m.messages.send message
 			
 			# If the email is not rejected or invalid, it's either sent or queued or scheduled
-			if (result[0][:status] != 'rejected' || result[0][:status] != 'invalid')
+			if (result[0][:status] != 'rejected' && result[0][:status] != 'invalid')
 	  			Rails.logger.debug "EMAIL SENT! to " + delivery.kindle_email + " via Mandrill" 	
 	  		else
 	  			# Send using SMTP
