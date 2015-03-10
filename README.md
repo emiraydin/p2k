@@ -31,6 +31,7 @@ defaults: &defaults
   DELIVERY_EMAIL_PORT: portnumber
   DELIVERY_EMAIL_ADDRESS: "delivery@myapp.com"
   DELIVERY_EMAIL_PASSWORD: "passfor-delivery@myapp"
+  MANDRILL_API_KEY: "YOUR_MANDRILL_API_KEY"
 
 development:
   <<: *defaults
