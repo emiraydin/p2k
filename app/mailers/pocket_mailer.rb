@@ -6,6 +6,6 @@ class PocketMailer < ActionMailer::Base
   	email_subject = "Your " + @delivery.frequency.titleize + " Delivery From P2K"
   	attachments['p2k.mobi'] = File.read(attachment, mode: "rb")
   	mail(to: @delivery.kindle_email, subject: email_subject)
-  	logger.debug "EMAIL SENT! to " + @delivery.kindle_email
+  	logger.debug "EMAIL SENT! to " + @delivery.kindle_email + " via SMTP"
   end
 end

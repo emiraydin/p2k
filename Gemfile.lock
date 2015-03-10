@@ -57,6 +57,7 @@ GEM
     daemons (1.1.9)
     erubis (2.7.0)
     eventmachine (1.0.4)
+    excon (0.44.4)
     execjs (2.2.2)
     hike (1.2.3)
     i18n (0.6.11)
@@ -69,6 +70,9 @@ GEM
     json (1.8.1)
     mail (2.6.1)
       mime-types (>= 1.16, < 3)
+    mandrill-api (1.0.53)
+      excon (>= 0.16.0, < 1.0)
+      json (>= 1.7.7, < 2.0)
     mime-types (2.4.3)
     mini_portile (0.6.2)
     minitest (5.4.3)
@@ -149,6 +153,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   kindlerb!
+  mandrill-api
   open_uri_redirections
   pg (~> 0.18.0.pre20141117110243)
   rails (= 4.1.6)

@@ -44,5 +44,6 @@ gem 'certified'
 gem 'open_uri_redirections'
 gem 'whenever'
 gem 'settingslogic'
+gem 'mandrill-api'
 
 gem 'thin'
