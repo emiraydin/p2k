@@ -7,8 +7,6 @@ class ManageController < ApplicationController
   		redirect_to "/deliveries/home"
   	end	
     @delivery = @user.delivery
-
-
   end
 
   def stop

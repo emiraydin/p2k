@@ -1,11 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  username: MyString
-  email: MyString
-  token: MyString
+  username: userone
+  access_token: some-token-1
 
 two:
-  username: MyString
-  email: MyString
-  token: MyString
+  username: usertwo
+  access_token: some-token-1

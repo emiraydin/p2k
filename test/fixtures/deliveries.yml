@@ -1,13 +1,23 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user_id: 
-  delivery_frequency: MyString
-  delivery_option: MyString
+  user_id: one
+  kindle_email: userone@kindle.com
+  frequency: 0
+  day: 1
+  hour: 2
+  time_zone: Eastern Time (US & Canada)
+  option: 0
+  count: 3
   archive_delivered: false
 
 two:
-  user_id: 
-  delivery_frequency: MyString
-  delivery_option: MyString
+  user_id: two
+  kindle_email: usertwo@kindle.com
+  frequency: 0
+  day: 2
+  hour: 9
+  time_zone: Pacific Time (US & Canada)
+  option: 0
+  count: 10
   archive_delivered: false

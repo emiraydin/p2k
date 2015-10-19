@@ -1,6 +1,7 @@
 require 'test_helper'
 
-class DeliveryControllerTest < ActionController::TestCase
+class DeliveriesControllerTest < ActionController::TestCase
+
   test "should get daily" do
     get :daily
     assert_response :success
