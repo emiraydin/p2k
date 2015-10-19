@@ -3,6 +3,7 @@ P2K (Pocket to Kindle)
 **P2K (Pocket to Kindle)** is a Rails application that sends articles from your Pocket to Kindle e-reader.
 
 [![Build Status](https://travis-ci.org/emiraydin/p2k.svg?branch=master)](https://travis-ci.org/emiraydin/p2k)
+[![Coverage Status](https://coveralls.io/repos/emiraydin/p2k/badge.svg?branch=master&service=github)](https://coveralls.io/github/emiraydin/p2k?branch=master)
 [![Dependency Status](https://gemnasium.com/emiraydin/p2k.svg)](https://gemnasium.com/emiraydin/p2k)
 
 **Currently live at** http://p2k.co
