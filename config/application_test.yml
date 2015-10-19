@@ -1,0 +1,18 @@
+# config/application_test.yml
+# This file stores all the application constants for tests
+
+defaults: &defaults
+  POCKET_CONSUMER_KEY: "test"
+  READABILITY_PARSER_KEY: "test"
+  DIFFBOT_API_KEY: "test"
+  DELIVERY_EMAIL_SMTP: "test"
+  DELIVERY_EMAIL_PORT: 0
+  DELIVERY_EMAIL_ADDRESS: "test@p2k.co"
+  DELIVERY_EMAIL_PASSWORD: "test"
+  MANDRILL_API_KEY: "test"
+  DATABASE_HOST: "localhost"
+  DATABASE_USERNAME: "test"
+  DATABASE_PASSWORD: "test"
+
+test:
+  <<: *defaults

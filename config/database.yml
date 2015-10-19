@@ -24,11 +24,10 @@ development:
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  <<: *default
-  adapter: postgresql
+  adapter: sqlite3
   encoding: utf8
-  username: <%= Settings.DATABASE_USERNAME %>
-  password: <%= Settings.DATABASE_PASSWORD %>
+  database: ":memory:"
+  timeout: 500
 
 production:
   <<: *default
