@@ -46,4 +46,6 @@ gem 'whenever'
 gem 'settingslogic'
 gem 'mandrill-api'
 
-gem 'thin'
+gem 'thin', group: :development
+
+gem 'coveralls', require: false
