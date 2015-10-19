@@ -38,7 +38,7 @@ gem 'sdoc', group: :doc
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
 gem 'semantic-ui-sass'
-gem 'rest_client'
+gem 'rest-client'
 gem 'kindlerb'
 gem 'certified'
 gem 'open_uri_redirections'
