@@ -26,8 +26,8 @@ development:
 test:
   adapter: sqlite3
   encoding: utf8
-  database: ":memory:"
-  timeout: 500
+  database: "db/test.sqlite3"
+  timeout: 1500
 
 production:
   <<: *default
