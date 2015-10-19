@@ -11,7 +11,7 @@ class CreateDeliveries < ActiveRecord::Migration
       t.integer :count
       t.boolean :archive_delivered, default: false
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

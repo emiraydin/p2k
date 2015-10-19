@@ -4,7 +4,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :username, index: true
       t.string :access_token
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end
