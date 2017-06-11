@@ -89,32 +89,35 @@ module CreateBook
 				:images => 1, :output => "json"
 				}}
 		rescue => e
-			Rails.logger.debug "Pocket Article View API failed! Switching to Readability...\n"
-			return self.parse_readability(url, e.message)
+			Rails.logger.debug "Pocket Article View API failed! Switching to Mercury...\n"
+			return self.parse_mercury(url, e.message)
 		end
 		parsed = JSON.parse(response)
 
-		# If there is an error in the response, switch to Readability API
+		# If there is an error in the response, switch to Mercury API
 		if parsed['responseCode'] != "200"
-			return self.parse_readability(url, parsed['excerpt'])
+			return self.parse_mercury(url, parsed['excerpt'])
 		else
 			return parsed['article']
 		end
 	end
 
-	# Parse the articles via Readability API
-	def self.parse_readability(url, error)
+	# Parse the articles via Mercury API
+	def self.parse_mercury(url, error)
 		begin
-			response = RestClient.get 'https://readability.com/api/content/v1/parser', {:params => {
-				:url => url, :token => Settings.READABILITY_PARSER_KEY
-				}}
+			response = RestClient.get 'https://mercury.postlight.com/parser', {
+				:params => {
+					:url => url
+				},
+				:'x-api-key' => Settings.MERCURY_PARSER_KEY
+			}
 		rescue => e
 			Rails.logger.debug "Both APIs failed on URL: " + url + "\n"
 			return "This article could not be fetched or is otherwise invalid.\n" + 
 				"This is most likely an issue with fetching the article from the source server.\n" +
 				"URL: " + url + "\n" +
 				"Parsing was first tried via Diffbot API. Error message:\n" + error + "\n" +
-				"Parsing then tried via Readability API. Error message:\n" + e.message
+				"Parsing then tried via Mercury API. Error message:\n" + e.message
 		end
 		parsed = JSON.parse(response)
 		return parsed['content']
@@ -127,14 +130,14 @@ module CreateBook
 				:url => url, :token => Settings.DIFFBOT_API_KEY
 				}}
 		rescue => e
-			Rails.logger.debug "Diffbot API failed! Switching to Readability...\n"
-			return self.parse_readability(url, e.message)
+			Rails.logger.debug "Diffbot API failed! Switching to Mercury...\n"
+			return self.parse_mercury(url, e.message)
 		end
 		parsed = JSON.parse(response)
 
-		# If there is an error in the response, switch to Readability API
+		# If there is an error in the response, switch to Mercury API
 		if parsed['error']
-			return self.parse_readability(url, parsed['error'])
+			return self.parse_mercury(url, parsed['error'])
 		else
 			return parsed['objects'][0]['html']
 		end
