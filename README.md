@@ -76,6 +76,32 @@ production:
   secret_key_base: <%= ENV["SECRET_KEY_BASE"] %>
 ```
 
+### 3. Running application in production
+1. Set `RAILS_ENV` environment variable.
+```sh
+export RAILS_ENV=production
+```
+
+2. Install required gems
+```sh
+bundle install -- path vendor/bundle
+```
+
+2. Create database schema.
+```sh
+rake "db:migrate"
+```
+
+3. Precompile assets.
+```sh
+rake assets:precompile
+```
+
+4. Set up reverse proxy like `nginx` or `HAProxy` or use built-in server, which I do not recommend you to do so in production.
+```sh
+rails server -b IP -p PORT
+```
+
 ## Dependencies
 
 ### 1. Kindlegen application
