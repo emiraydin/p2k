@@ -29,7 +29,7 @@ Create a file named `application.yml` inside `/config` folder. It should look so
 
 defaults: &defaults
   POCKET_CONSUMER_KEY: "YOUR_POCKET_API_KEY"
-  READABILITY_PARSER_KEY: "YOUR_READABILITY_API_KEY"
+  MERCURY_PARSER_KEY: "YOUR_MERCURY_API_KEY"
   DIFFBOT_API_KEY: "YOUR_DIFFBOT_API_KEY"
   DELIVERY_EMAIL_SMTP: "smtp.mymailprovider.com"
   DELIVERY_EMAIL_PORT: portnumber
@@ -85,7 +85,7 @@ We need Kindlegen application to parse our ebook into MOBI format, which will th
 This application uses [ImageMagick] (http://www.imagemagick.org/script/binary-releases.php) to optimize and compress images before putting it into a Kindle supported ebook file. You'll need the ImageMagick binaries in order to make the `convert` command work.
 
 ### 3. Parsing Articles
-I'm using [Diffbot Article API](http://www.diffbot.com/products/automatic/article/) and [Readability Parser API](https://readability.com/developers/api/parser) interchangeably to parse articles properly before sending them to Kindle. Make sure you get your API keys and put them in your `config/application.yml` as shown above.
+I'm using [Diffbot Article API](http://www.diffbot.com/products/automatic/article/) and [Mercury Web Parser API](https://mercury.postlight.com/web-parser/) interchangeably to parse articles properly before sending them to Kindle. Make sure you get your API keys and put them in your `config/application.yml` as shown above.
 
 ### 4. Cron jobs for deliveries
 This application uses [whenever] (https://github.com/javan/whenever) gem to run cron jobs for deliveries.
